@@ -8,14 +8,11 @@ app.get('/about', function (req, res) {
     res.send('About Us');
     });
 
- app.get('/contact', function (req, res) {
-   //i want to show time in vietnam with gmt+7 although my server is in US
-    var date = new Date();
-    var vietnamTime = date.getTime() + (420*60*1000);
-    var vietnamDate = new Date(vietnamTime);
-    res.send('Vietnam Time: ' + vietnamDate);
-
-    });
+app.get('/contact', function (req, res) {
+    //return server information ip address, port, protocol
+    res.send(req.protocol + '://' + req.get('host') + req.originalUrl);
+    }
+);
 
 
 app.listen(3000, function () {
