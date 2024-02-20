@@ -1,35 +1,47 @@
-
 const TelegramBot = require('node-telegram-bot-api');
 
-// replace the value below with the Telegram token you receive from @BotFather
+// Replace with your Telegram bot token
 const token = '7182311087:AAHQImo76a2qKoJZmvSdi1evFhPv6A5JIm4';
 
-// Create a bot that uses 'polling' to fetch new updates
-const bot = new TelegramBot(token, {polling: true});
 
-// Matches "/echo [whatever]"
+const OpenAI = require ('openai');
+const openai = new OpenAI({
+  apiKey: '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' // This is the default and can be omitted
+});
+
+
+// Create the Telegram bot
+const bot = new TelegramBot(token, { polling: true });
+
+// Initialize the OpenAI API
+
+
+// Handle "/echo" command
 bot.onText(/\/echo (.+)/, (msg, match) => {
-  // 'msg' is the received Message from Telegram
-  // 'match' is the result of executing the regexp above on the text content
-  // of the message
-
   const chatId = msg.chat.id;
-  const resp = match[1]; // the captured "whatever"
-
-  // send back the matched "whatever" to the chat
+  const resp = match[1];
   bot.sendMessage(chatId, resp);
 });
 
-// Listen for any kind of message. There are different kinds of
-// messages.
-bot.on('message', (msg) => {
+// Handle all incoming messages
+bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
-//get date time of the message in vietnam
-  var date = new Date();
-  date.setHours(date.getHours() + 7);
-  
 
-  // send a message to the chat acknowledging receipt of their message
-  bot.sendMessage(chatId, 'Received your message');
-  bot.sendMessage(chatId,date);
+  // Send an acknowledgment message (optional)
+  // bot.sendMessage(chatId, 'Received your message');
+
+  // Get the user's message
+  const userMessage = msg.text;
+
+ 
+
+  const params = {
+    messages: [{ role: 'user', content: 'Say this is a test' }],
+    model: 'gpt-3.5-turbo',
+  };
+  const chatCompletion = await openai.chat.completions.create(params);
+  bot.sendMessage(chatId, chatCompletion.data.choices[0].message.content);
+
 });
+
+console.log('Bot is running...');
