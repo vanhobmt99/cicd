@@ -42,7 +42,7 @@ bot.on('message', async (msg) => {
   const params = {
     messages: [{ role: 'user', content: userMessage }],
     model: 'gpt-3.5-turbo',
-    max_tokens: 150,
+    max_tokens: 2000,
   };
   const chatCompletion = await openai.chat.completions.create(params);
   // bot.sendMessage(chatId, chatCompletion.data.choices[0].message.content);
