@@ -47,6 +47,7 @@ bot.on('message', async (msg) => {
   const chatCompletion = await openai.chat.completions.create(params);
   // bot.sendMessage(chatId, chatCompletion.data.choices[0].message.content);
   bot.sendMessage(chatId, chatCompletion.choices[0].message.content);
+  console.log(chatCompletion.choices[0].message.content);
 });
 
 console.log('Bot is running...');
