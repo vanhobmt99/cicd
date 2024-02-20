@@ -1,12 +1,16 @@
 const TelegramBot = require('node-telegram-bot-api');
+require('dotenv').config()
+
+
 
 // Replace with your Telegram bot token
 const token = '7182311087:AAHQImo76a2qKoJZmvSdi1evFhPv6A5JIm4';
 
 
-const OpenAI = require ('openai');
+const OpenAI =require ('openai');
+require('dotenv').config()
 const openai = new OpenAI({
-  apiKey: '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' // This is the default and can be omitted
+  apiKey: process.env.API_OPENAI// This is the default and can be omitted
 });
 
 
@@ -36,12 +40,13 @@ bot.on('message', async (msg) => {
  
 
   const params = {
-    messages: [{ role: 'user', content: 'Say this is a test' }],
+    messages: [{ role: 'user', content: 'how long to buy a food' }],
     model: 'gpt-3.5-turbo',
+    max_tokens: 150,
   };
   const chatCompletion = await openai.chat.completions.create(params);
-  bot.sendMessage(chatId, chatCompletion.data.choices[0].message.content);
-
+  // bot.sendMessage(chatId, chatCompletion.data.choices[0].message.content);
+  bot.sendMessage(chatId, chatCompletion.choices[0].message.content);
 });
 
 console.log('Bot is running...');
