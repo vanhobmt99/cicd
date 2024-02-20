@@ -40,7 +40,7 @@ bot.on('message', async (msg) => {
  
 
   const params = {
-    messages: [{ role: 'user', content: 'how long to buy a food' }],
+    messages: [{ role: 'user', content: userMessage }],
     model: 'gpt-3.5-turbo',
     max_tokens: 150,
   };
