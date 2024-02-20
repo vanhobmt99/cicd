@@ -25,7 +25,7 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
 //get date time of the message in vietnam
-  var date = new Date();
+  var date = new Date().toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"})
   date.setHours(date.getHours() + 7);
   
 
