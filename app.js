@@ -51,3 +51,4 @@ bot.on('message', async (msg) => {
 });
 
 console.log('Bot is running...');
+console.log('Press Ctrl + C to terminate the program');
