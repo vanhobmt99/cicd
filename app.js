@@ -51,8 +51,4 @@ bot.on('message', async (msg) => {
 });
 
 console.log('Bot is running...');
-<<<<<<< HEAD
-console.log('Bot is update');
-=======
-console.log('Press Ctrl + C to terminate the program');
->>>>>>> fe4c7a60788bf3d28d41fbada6cde439e854dc73
+console.log('update bot telegram');
