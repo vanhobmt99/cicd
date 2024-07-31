@@ -52,3 +52,4 @@ bot.on('message', async (msg) => {
 
 console.log('Bot is running...');
 console.log('update bot telegram');
+console.log('test cicd');
